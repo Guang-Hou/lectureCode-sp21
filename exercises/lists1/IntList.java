@@ -1,32 +1,59 @@
+
 public class IntList {
-	public int first;
-	public IntList rest;
+    public int first;
+    public IntList rest;
 
-	public IntList(int f, IntList r) {
-		first = f;
-		rest = r;
-	}
+    public IntList(int f, IntList r) {
+        first = f;
+        rest = r;
+    }
 
-	/** Return the size of the list using... recursion! */
-	public int size() {
-		return 0;
-	}
+    /**
+     * Return the size of the list using... recursion!
+     */
+    public int size() {
+        if (rest == null) {
+            return 1;
+        }
+        return 1 + this.rest.size();
+    }
 
-	/** Return the size of the list using no recursion! */
-	public int iterativeSize() {
-		return 0;
-	}
+    /**
+     * Return the size of the list using no recursion!
+     */
+    public int iterativeSize() {
+        IntList p = this;
+        int count = 0;
+        while (p != null) {
+            count += 1;
+            p = p.rest;
+        }
+        return count;
+    }
 
-	/** Returns the ith value in this list.*/
-	public int get(int i) {
-		return 0;
-	}
+    /**
+     * Returns the ith value in this list.
+     */
+    public int get(int i) {
+        if (i < this.size()) {
+            IntList p = this;
+            int count = 0;
+            while (count < i) {
+                count += 1;
+                p = p.rest;
+            }
+            return p.first;
+        }
+        return 0;
+    }
 
-	public static void main(String[] args) {
-		IntList L = new IntList(15, null);
-		L = new IntList(10, L);
-		L = new IntList(5, L);
+    public static void main(String[] args) {
+        IntList L = new IntList(15, null);
+        L = new IntList(10, L);
+        L = new IntList(5, L);
 
-		System.out.println(L.iterativeSize());
-	}
+        System.out.println(L.size());
+        System.out.println(L.iterativeSize());
+        System.out.println("1 index element: " + L.get(1));
+    }
 } 
